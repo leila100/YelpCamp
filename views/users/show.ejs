@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <p class="lead text-center text-uppercase"><strong>User Profile: <%= user.username %></strong></p>
+    <div class="row">
+        <div class="col-md-4">
+            <img class="img-responsive" src="<%= user.avatar %>">
+        </div>
+        <div class="col-md-8">
+            <h3><%= user.firstName %> - <%= user.lastName %></h3>
+            <p><a href="mailto:<%= user.email %>"><%= user.email %></a></p>
+            <div>
+                <h3><%= user.username %>'s campgrounds:</h3>
+                <% if(campgrounds.length < 1) { %>
+                  <h6 class="mt-4 ml-2"><em>No campgrounds submitted yet...</em></h6> 
+                <% } else { %>                
+                    <ul>
+                    <% campgrounds.forEach(function(campground){ %>
+                        <li>
+                            <a href="/campgrounds/<%= campground.id %>"><%= campground.name %></a>
+                        </li>
+                    <% }); %>
+                    </ul>
+                <% } %>
+                <% if((currentUser && user._id.equals(currentUser._id)) ||
+                          (currentUser && currentUser.isAdmin)) { %>
+                        <a class="btn btn-sm btn-warning" href="/users/<%= user._id %>/edit">Edit</a>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
