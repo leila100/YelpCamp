@@ -19,7 +19,9 @@ var campgroundRoutes = require("./routes/campgrounds"),
 
 //create database
 mongoose.Promise = global.Promise; 
-mongoose.connect("mongodb://localhost/yelp_camp", {useMongoClient: true});
+// mongoose.connect("mongodb://localhost/yelp_camp", {useMongoClient: true});
+mongoose.connect("mongodb://Leila:password@ds155424.mlab.com:55424/leilayelpcamp", {useMongoClient: true});
+
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
