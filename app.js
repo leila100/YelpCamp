@@ -19,8 +19,12 @@ var campgroundRoutes = require("./routes/campgrounds"),
 
 //create database
 mongoose.Promise = global.Promise; 
-// mongoose.connect("mongodb://localhost/yelp_camp", {useMongoClient: true});
-mongoose.connect("mongodb://Leila:password@ds155424.mlab.com:55424/leilayelpcamp", {useMongoClient: true});
+//use export DATABASEURL=mongodb://localhost/yelp_camp in the console for c9
+//use export DATABASEURL=mongodb://Leila:password@ds155424.mlab.com:55424/leilayelpcamp in heroku
+console.log(process.env.DATABASEURL);
+
+mongoose.connect(process.env.DATABASEURL, {useMongoClient: true});
+// mongoose.connect("mongodb://Leila:password@ds155424.mlab.com:55424/leilayelpcamp", {useMongoClient: true});
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
